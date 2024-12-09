@@ -12,7 +12,7 @@ function themeUpdater() {
     document.documentElement.classList.add("dark")
     document
       .querySelector("meta[name='theme-color'")
-      ?.setAttribute("content", "black")
+      ?.setAttribute("content", "#0C0A09")
   }
 
   // if theme is in localStorage and it's not equal to dark, then removing dark, if theme isn't in localStorage, then null won't be equal to dark, so also removing dark to respect the default faux user light theme preference
@@ -20,7 +20,7 @@ function themeUpdater() {
     document.documentElement.classList.remove("dark")
     document
       .querySelector("meta[name='theme-color']")
-      ?.setAttribute("content", "white")
+      ?.setAttribute("content", "#FAFAF9")
   }
 
   // theme-transitioning will be removed in the event loop after the event loop in which the operation above finished
@@ -46,6 +46,9 @@ export default function useTheme() {
     if (theme === "dark") {
       setTheme("dark")
     }
+
+    // when page is refreshed, adding dark class properly to html element according to the theme value in localStorage
+    themeUpdater()
   }, [])
 
   // Dynamically synchronizing the theme in reactive theme state and localStorage

@@ -118,7 +118,7 @@ export default function App() {
             <p>
               I find myself slightly more distracted by the environment, after
               graduated from the university, although there is no more annoying
-              roomate getting up around at 7pm and going to bed around at 6am,
+              roommates getting up around at 7pm and going to bed around at 6am,
               but the environment in which I am still learning programming is
               starting to complain why don&apos;t I hurry up and find a job as
               quick as possible, I won&apos;t say they are wrong, but
