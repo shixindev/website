@@ -1,0 +1,6 @@
+@tailwind utilities;
+
+.theme-transitioning,
+.theme-transitioning * {
+  transition: none !important;
+}

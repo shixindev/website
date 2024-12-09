@@ -1,0 +1,8 @@
+@import "css";
+@tailwind components;
+
+@layer components {
+  .link-button {
+    @apply cursor-pointer rounded bg-stone-100 px-4 py-2 no-underline outline-none transition-colors hover:bg-stone-200 focus:bg-stone-200 dark:bg-stone-900 dark:hover:bg-stone-700 dark:focus:bg-stone-700;
+  }
+}
