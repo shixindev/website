@@ -2,20 +2,133 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.theme-transitioning,
+.theme-transitioning * {
+    transition-property: none !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* for easier controlment of transition, especially when working together with .theme-transitioning */
+.react-aria-Switch {
+    --inset-shadow-without-color: inset 4px 2px 2px 0px;
+
+    &[data-hovered] {
+        & .indicator-wrapper {
+            border-color: theme("colors.stone.400");
+        }
+    }
+
+    &[data-pressed] {
+        & .indicator-wrapper {
+            /* for enhanced imitation of light source casting its light at the switch's top left corner */
+            border-color: transparent;
+
+            box-shadow: var(--inset-shadow-without-color)
+                theme("colors.stone.400");
+            background-color: theme("colors.stone.300");
+        }
+
+        & .indicator {
+            background-color: theme("colors.stone.200");
+        }
+    }
+
+    /* below is the style that will be applied, when dark mode is active */
+    &[data-selected] {
+        &[data-hovered] {
+            & .indicator-wrapper {
+                border-color: theme("colors.stone.400");
+            }
+        }
+
+        &[data-pressed] {
+            & .indicator-wrapper {
+                border-color: transparent;
+                box-shadow: var(--inset-shadow-without-color)
+                    theme("colors.stone.900");
+                background-color: theme("colors.stone.600");
+            }
+
+            & .indicator {
+                background-color: theme("colors.stone.500");
+            }
+        }
+
+        & .indicator-wrapper {
+            border-color: theme("colors.stone.500");
+            box-shadow: var(--inset-shadow-without-color)
+                theme("colors.stone.800");
+            background-color: theme("colors.stone.700");
+        }
+
+        & .indicator {
+            transform: translateX(100%);
+            background-color: theme("colors.stone.600");
+        }
+    }
+
+    & .indicator-wrapper {
+        display: flex;
+        align-items: center;
+        /* expectant width is 46px, but 50px is looking right, probably width is affected by stroke-width too */
+        inline-size: 50px;
+
+        padding-inline: 4px;
+        padding-block: 2px;
+        border-width: theme("borderWidth.DEFAULT");
+        border-color: theme("colors.stone.300");
+        border-radius: theme("borderRadius.full");
+        transition-property: transform, background-color, border-color,
+            box-shadow !important;
+        transition-duration: 150ms;
+        box-shadow: var(--inset-shadow-without-color) theme("colors.stone.300");
+        cursor: pointer;
+        background-color: theme("colors.stone.200");
+    }
+
+    & .indicator {
+        padding: 2px;
+        border-radius: theme("borderRadius.full");
+        transition-property: transform, background-color !important;
+        transition-duration: 150ms;
+        background-color: theme("colors.stone.100");
+    }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* for convenient animation implementation, using CSS syntax instead */
+.react-aria-Popover {
+    &[data-placement="top"] {
+        --offset: translateY(8px);
+    }
+
+    &[data-placement="right"] {
+        --offset: translateX(8px);
+    }
+
+    &[data-placement="bottom"] {
+        --offset: translateY(-8px);
+    }
+
+    &[data-placement="left"] {
+        --offset: translateX(-8px);
+    }
+
+    &[data-entering] {
+        animation: popover-slide 200ms;
+    }
+
+    &[data-exiting] {
+        animation: popover-slide 200ms reverse ease-out;
+    }
+}
+
+@keyframes popover-slide {
+    from {
+        transform: var(--offset);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0);
+        opacity: 1;
+    }
 }
