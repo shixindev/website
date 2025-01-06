@@ -46,7 +46,7 @@ export default function Nav() {
                 <Link direction="inward" variant="quiet" href="/">
                     Xie
                 </Link>
-                <div className="flex flex-row-reverse items-center sm:flex-row">
+                <div className="flex flex-row-reverse items-center gap-2 sm:flex-row">
                     <div className="sm:hidden">
                         <Menu label={<AlignJustify />} section={SECTION} />
                     </div>
