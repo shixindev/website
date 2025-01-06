@@ -46,13 +46,14 @@ export default function Nav() {
                 <Link direction="inward" variant="quiet" href="/">
                     Xie
                 </Link>
-                <div className="flex items-center gap-2 sm:hidden">
-                    <ThemeSwitcher />
-                    <Menu label={<AlignJustify />} section={SECTION} />
-                </div>
-                <div className="hidden items-center gap-2 sm:flex">
-                    <Menu label="Writing" list={WRITING_LIST} />
-                    <Menu label="Appearance" list={APPEARANCE_LIST} />
+                <div className="flex flex-row-reverse items-center sm:flex-row">
+                    <div className="sm:hidden">
+                        <Menu label={<AlignJustify />} section={SECTION} />
+                    </div>
+                    <div className="hidden items-center gap-2 sm:flex">
+                        <Menu label="Writing" list={WRITING_LIST} />
+                        <Menu label="Appearance" list={APPEARANCE_LIST} />
+                    </div>
                     <ThemeSwitcher />
                 </div>
             </nav>
